@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :microposts
+  resources :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'posts#index', as: 'home'
+  root 'users#index', as: 'home'
 
   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'
