@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'
+  get '/signup', to: 'users#new' 
+  post '/signup',  to: 'users#create'
 
   # example of resource route (map HTTP verbs to controller actions)
   resources :posts do 
