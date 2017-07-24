@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<div class="form-group">
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -21,7 +21,19 @@
     <%= f.text_field :email %>
   </div>
 
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+     
+  </div>
+
+  <div class="field">
+     <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
+  </div>
   </div>
 <% end %>

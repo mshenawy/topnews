@@ -8,8 +8,11 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.4'
-#To make the password digest, has_secure_password uses a state-of-the-art hash function called bcrypt.
-gem 'bcrypt', '~> 3.1.11'
+
+gem 'bootstrap', '~> 4.0.0.alpha6'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.3.3'
+end
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -33,7 +36,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+#To make the password digest, has_secure_password uses a state-of-the-art hash function called bcrypt.
+gem 'bcrypt', '~> 3.1.11'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
