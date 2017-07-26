@@ -11,7 +11,7 @@ User.create!(name:  "Mohamed",
              password_confirmation: "adminadmin",
              admin: true)
 
-0.times do |n|
+1.times do |n|
   name  = "Mohamed"
   email = "admin@admin.com"
   password = "password"

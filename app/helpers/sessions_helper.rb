@@ -23,6 +23,9 @@ module SessionsHelper
   def current_user?(user)
     user == current_user
   end
+  def admin_user
+    current_user.admin
+  end
   # Returns the user corresponding to the remember token cookie.
   def current_user
     if (user_id = session[:user_id])
