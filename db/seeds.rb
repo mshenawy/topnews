@@ -9,7 +9,9 @@ User.create!(name:  "Mohamed",
              email: "admin@admin.com",
              password:              "adminadmin",
              password_confirmation: "adminadmin",
-             admin: true)
+             admin: true,
+             activated: true,
+             activated_at: Time.zone.now)
 
 1.times do |n|
   name  = "Mohamed"
@@ -18,5 +20,7 @@ User.create!(name:  "Mohamed",
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+              activated: true,
+              activated_at: Time.zone.now)
 end
