@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'users#index', as: 'home'
-  root :to => "users#index"
+  root 'pages#welcome', as: 'home'
+  root :to => "pages#welcome"
 
   # example of regular Route.
   get 'about' => 'pages#about', as: 'about'
+  get 'welcome' => 'pages#welcome', as: 'welcome'
   get '/signup', to: 'users#new' 
   post '/signup',  to: 'users#create'
   get    '/login',   to: 'sessions#new'

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head class="">
-    <title>Twitter</title>
+        <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <!--
     <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' %>
@@ -17,8 +17,8 @@
 <%= render "layouts/header" %>
     <div class="container" >      
         <% flash.each do |message_type, message| %>
-          <div class="alert alert-<%= message_type %>"><%= message %></div>
-        <% end %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
     </div>
