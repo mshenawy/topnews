@@ -108,16 +108,16 @@ Rails.application.configure do
   #host = 'damp-ridge-34836.herokuapp.com'
   #config.action_mailer.default_url_options = { host: host }
   config.action_mailer.default_url_options = { :host => 'damp-ridge-34836.herokuapp.com' }
-  config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailgun
-  ActionMailer::Base.smtp_settings = {
-    :port           => "587",
-    :address        => "smtp.mailgun.org",
-    :user_name      => ENV['username'],
-    :password       => ENV['password'],
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
     :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "sandbox5f290d117adb441596c5dee78e5a41ed.mailgun.org",
+    :user_name => "postmaster@sandbox5f290d117adb441596c5dee78e5a41ed.mailgun.org",
+    :password => "921a0b4275bfdc7f15258aa9bf2749e8"
   }
-
 
 
 end
