@@ -63,9 +63,9 @@ class User < ApplicationRecord
 
   # Sends activation email.
   def send_activation_email
-    UserMailer.account_activation(self).deliver_now
+    #UserMailer.account_activation(self).deliver_now
     #SEND USING JOBS
-    #SendEmailJob.set(wait: 20.seconds).perform_later(@user) 
+    SendEmailJob.set(wait: 20.seconds).perform_later(@user) 
   end
 
   # Sets the password reset attributes.
