@@ -104,7 +104,10 @@ Rails.application.configure do
 #    :domain         => 'heroku.com',
 #    :enable_starttls_auto => true
 #  }
-
+  
+  #host = 'damp-ridge-34836.herokuapp.com'
+  #config.action_mailer.default_url_options = { host: host }
+  config.action_mailer.default_url_options = { :host => 'damp-ridge-34836.herokuapp.com' }
   config.action_mailer.delivery_method = :smtp
   # SMTP settings for mailgun
   ActionMailer::Base.smtp_settings = {
