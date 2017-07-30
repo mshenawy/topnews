@@ -58,6 +58,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
+  config.active_job.queue_adapter = :delayed_job
   # config.active_job.queue_name_prefix = "twitter#{Rails.env}"
   config.action_mailer.perform_caching = false
 
@@ -89,17 +90,32 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.raise_delivery_errors = true
+  
+  #config.action_mailer.delivery_method = :smtp
+  #host = 'damp-ridge-34836.herokuapp.com'
+  #address = 'smtp.sendgrid.net'
+  #config.action_mailer.default_url_options = { host: host }
+  #ActionMailer::Base.smtp_settings = {
+#    :address        => 'smtp.sendgrid.net',
+#    :port           => '587',
+#    :authentication => :plain,
+#    :user_name      => ENV['SENDGRID_USERNAME'],
+#    :password       => ENV['SENDGRID_PASSWORD'],
+#    :domain         => 'heroku.com',
+#    :enable_starttls_auto => true
+#  }
+
   config.action_mailer.delivery_method = :smtp
-  host = 'damp-ridge-34836.herokuapp.com'
-  config.action_mailer.default_url_options = { host: host }
+  # SMTP settings for mailgun
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
+    :port           => 587,
+    :address        => "smtp.mailgun.org",
+    :domain         => ENV['domain'],
+    :user_name      => ENV['username'],
+    :password       => ENV['password'],
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
-    :domain         => 'heroku.com',
-    :enable_starttls_auto => true
-  }
+  }}
+
+
 
 end
