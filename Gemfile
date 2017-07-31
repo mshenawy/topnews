@@ -15,6 +15,10 @@ source 'https://rails-assets.org' do
 end
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'carrierwave',             '1.1.0'
+gem 'mini_magick',             '4.7.0'
+gem 'fog',                     '1.40.0'
+gem 'rmagick'
 
 
 # Use sqlite3 as the database for Active Record

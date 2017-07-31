@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
      @user = User.find(params[:id])
+     @microposts = @user.microposts.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /users/new
@@ -74,14 +75,6 @@ class UsersController < ApplicationController
 
     # Before filters
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
 
     # Confirms the correct user.
     def correct_user
