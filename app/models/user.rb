@@ -2,9 +2,8 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
-
 	before_save { self.email = email.downcase }
-	has_many :microposts
+	has_many :microposts, dependent: :destroy
 	 validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -25,6 +24,12 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+  
   # Remembers a user in the database for use in persistent sessions.
   def remember
     self.remember_token = User.new_token
