@@ -107,17 +107,17 @@ Rails.application.configure do
   
   #host = 'damp-ridge-34836.herokuapp.com'
   #config.action_mailer.default_url_options = { host: host }
-  config.action_mailer.default_url_options = { :host => 'damp-ridge-34836.herokuapp.com' }
-  # SMTP settings for mailgun
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandbox5f290d117adb441596c5dee78e5a41ed.mailgun.org",
-    :user_name => "postmaster@m.shenawy.com",
-    :password => "9a479f42873ab84a34f056e7dfad47fd"
-  }
+  # config.action_mailer.default_url_options = { :host => 'damp-ridge-34836.herokuapp.com' }
+  # # SMTP settings for mailgun
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :authentication => :plain,
+  #   :address => "smtp.mailgun.org",
+  #   :port => 587,
+  #   :domain => "sandbox5f290d117adb441596c5dee78e5a41ed.mailgun.org",
+  #   :user_name => "postmaster@m.shenawy.com",
+  #   :password => "9a479f42873ab84a34f056e7dfad47fd"
+  # }
 
 
 end
