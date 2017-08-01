@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170801115446) do
 
-  create_table "comments", force: :cascade do |t|
-    t.string   "username"
-    t.text     "body"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
-  end
-
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
     t.integer  "attempts",   default: 0, null: false
