@@ -15,10 +15,6 @@ source 'https://rails-assets.org' do
 end
 gem 'will_paginate',           '3.1.6'
 gem 'bootstrap-will_paginate', '1.0.0'
-gem 'carrierwave',             '1.1.0'
-gem 'mini_magick',             '4.7.0'
-gem 'fog',                     '1.40.0'
-gem 'acts-as-taggable-on', '~> 4.0'
 
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
@@ -72,3 +68,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'delayed_job_active_record'
+gem 'carrierwave', '~> 1.0'
+gem "mini_magick"

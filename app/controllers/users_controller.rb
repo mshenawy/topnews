@@ -14,7 +14,11 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
      @user = User.find(params[:id])
-     @microposts = @user.microposts.paginate(:page => params[:page], :per_page => 5)
+     @message  = @user.messages.build
+      if logged_in?
+      @feed_items = current_user.feed.paginate(:page => params[:page], :per_page => 10)
+      @message  = current_user.messages.build
+   end
   end
 
   # GET /users/new
@@ -51,7 +55,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
      @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    if @user.update_attributes(user_update_params)
       # Handle a successful update.
       render 'show'
     else
@@ -93,6 +97,9 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 
+    def user_update_params
+      params.require(:user).permit(:name, :email, :username, :bio,:location ,:image)
+    end
     # Before filters
 
 

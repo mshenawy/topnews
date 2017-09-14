@@ -1,28 +1,27 @@
-<p id="notice"><%= notice %></p>
-<% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-    <section class="stats">
-      <%= render 'shared/stats' %>
-    </section>
-  </aside>
-   <div class="col-md-8">
-    <%= render 'follow_form' if logged_in? %>
-    <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
-      <ol class="microposts">
-        <%= render @microposts %>
-      </ol>
-      <%= will_paginate @microposts %>
-    <% end %>
-  </div>
-</div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="rsp-row top-content" >
+<div class="profileBox" >
+  <div class="profileBox_header">    
+      <div class="profileBox_label">
+        <%= image_tag(@user.image.url, alt: 'Image',class: "panel-profile-img" ) if @user.image? %>
+        <span class="userName userOnline"><%= current_user.name %></span>
+      </div>
+</div>
+  <div class="row">
+      <div class="col-md-12">
+           <%= form_for(@message) do |f| %>
+            <%= render 'shared/error_messages', object: f.object %>
+              <div class="field">
+                <%= f.text_area :content, placeholder: "Send new message..." , rows: "5" , class: 'textarea-container uiScrollableArea uiScrollableAreaWrap' %>
+                <%= hidden_field_tag(:user_id, @user.id ) %>
+              <div class="_4rv4">
+                <%= f.submit "Send", class: "_30yy _38lh _39bl" %>
+                </div>
+              </div>
+
+            <% end %>
+      </div>
+
+  </div>
+
+</div>
