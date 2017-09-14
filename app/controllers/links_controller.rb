@@ -1,5 +1,7 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  # before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, except: [:index , :show]
+  before_action :correct_user,   only: [:destroy , :update]
 
   # GET /links
   # GET /links.json
@@ -7,14 +9,13 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
-  # GET /links/1
-  # GET /links/1.json
   def show
+    @link = Link.find(params[:id])
   end
 
   # GET /links/new
   def new
-    @link = Link.new
+    @link = current_user.links.build
   end
 
   # GET /links/1/edit
@@ -24,7 +25,7 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(link_params)
+    @link = current_user.links.build(link_params)
 
     respond_to do |format|
       if @link.save
@@ -62,13 +63,14 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_link
-      @link = Link.find(params[:id])
-    end
-
+   
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
       params.require(:link).permit(:title, :url)
+    end
+
+    def correct_user
+      @link = current_user.links.find_by(id: params[:id])
+      redirect_to root_url if @link.nil?
     end
 end
