@@ -20,6 +20,7 @@ class LinksController < ApplicationController
 
   # GET /links/1/edit
   def edit
+     @link = Link.find(params[:id])
   end
 
   def create
