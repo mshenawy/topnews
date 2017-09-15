@@ -70,3 +70,6 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 gem 'delayed_job_active_record'
 gem 'carrierwave', '~> 1.0'
 gem "mini_magick"
+gem 'acts_as_votable', '~> 0.10.0'
+gem 'simple_form'
+gem 'record_tag_helper', '~> 1.0'

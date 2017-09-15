@@ -22,8 +22,6 @@ class LinksController < ApplicationController
   def edit
   end
 
-  # POST /links
-  # POST /links.json
   def create
     @link = current_user.links.build(link_params)
 
@@ -38,8 +36,6 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1
-  # PATCH/PUT /links/1.json
   def update
     respond_to do |format|
       if @link.update(link_params)
@@ -52,14 +48,24 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1
-  # DELETE /links/1.json
   def destroy
     @link.destroy
     respond_to do |format|
       format.html { redirect_to links_url, notice: 'Link was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @link = Link.find(params[:id])
+    @link.upvote_by current_user
+    redirect_to :back
+  end
+
+  def downvote
+    @link = Link.find(params[:id])
+    @link.downvote_from current_user
+    redirect_to :back
   end
 
   private
@@ -71,6 +77,6 @@ class LinksController < ApplicationController
 
     def correct_user
       @link = current_user.links.find_by(id: params[:id])
-      redirect_to root_url if @link.nil?
+      redirect_to root_url, notice: "Not authorized to edit this link" if @link.nil?
     end
 end

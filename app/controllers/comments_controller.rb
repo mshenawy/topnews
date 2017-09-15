@@ -1,23 +1,42 @@
 class CommentsController < ApplicationController
-	
-	http_basic_authenticate_with name: "mshenawy", password:"12345", only: [:destroy]  
+  before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, except: [:index , :show]
+  # before_action :correct_user,   only: [:destroy , :update]
 
-	def create 
-		@post = Post.find(params[:post_id])
-		@comment = @post.comments.create(comment_params)
-		redirect_to post_path(@post)
-	end
+  
+  def create
+    @link = Link.find(params[:link_id])
+    @comment = @link.comments.new(comment_params)
+    @comment.user = current_user
 
-	def destroy
-  		@post = Post.find(params[:post_id])
-  		@comment = @post.comments.find(params[:id])
-  		@comment.destroy
-  		redirect_to post_path(@post)
-	end
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @link, notice: 'Comment was successfully created.' }
+        format.json { render json: @comment, status: :created, location: @comment }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
-	private def comment_params
-		params.require(:comment).permit(:username, :body)
-	end
 
-	
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def comment_params
+      params.require(:comment).permit(:link_id, :body, :user_id)
+    end
 end
